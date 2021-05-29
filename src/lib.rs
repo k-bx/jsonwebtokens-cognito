@@ -16,22 +16,22 @@ mod error;
 pub use error::{Error, ErrorDetails};
 
 #[derive(Debug, Deserialize, Clone)]
-struct RSAKey {
-    kid: String,
-    alg: String,
-    n: String,
-    e: String,
+pub struct RSAKey {
+    pub kid: String,
+    pub alg: String,
+    pub n: String,
+    pub e: String,
 }
 
 #[derive(Debug, Deserialize)]
-struct JwkSet {
-    keys: Vec<RSAKey>,
+pub struct JwkSet {
+    pub keys: Vec<RSAKey>,
 }
 
 #[derive(Debug, Clone)]
-struct Cache {
-    last_jwks_get_time: Option<Instant>,
-    algorithms: HashMap<String, Arc<Algorithm>>,
+pub struct Cache {
+    pub last_jwks_get_time: Option<Instant>,
+    pub algorithms: HashMap<String, Arc<Algorithm>>,
 }
 
 /// Abstracts a remote Amazon Cognito JWKS key set
@@ -124,12 +124,12 @@ struct Cache {
 ///
 #[derive(Debug, Clone)]
 pub struct KeySet {
-    region: String,
-    pool_id: String,
-    jwks_url: String,
-    iss: String,
-    cache: Arc<RwLock<Cache>>,
-    min_jwks_fetch_interval: Duration,
+    pub region: String,
+    pub pool_id: String,
+    pub jwks_url: String,
+    pub iss: String,
+    pub cache: Arc<RwLock<Cache>>,
+    pub min_jwks_fetch_interval: Duration,
 }
 
 impl KeySet {
